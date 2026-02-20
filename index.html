@@ -548,14 +548,15 @@ body {
     var major = (i % 4 === 0);
     var len   = major ? 11 : 6;
 
-    var innerX = CX + (R - len) * Math.cos(angle);
-    var innerY = CY - (R - len) * Math.sin(angle);
+    // Ticks go OUTWARD from the arc (away from center)
+    var outerX = CX + (R + len) * Math.cos(angle);
+    var outerY = CY - (R + len) * Math.sin(angle);
 
     var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     line.setAttribute('x1', pt.x.toFixed(2));
     line.setAttribute('y1', pt.y.toFixed(2));
-    line.setAttribute('x2', innerX.toFixed(2));
-    line.setAttribute('y2', innerY.toFixed(2));
+    line.setAttribute('x2', outerX.toFixed(2));
+    line.setAttribute('y2', outerY.toFixed(2));
     line.setAttribute('stroke', major ? '#b0b0b0' : '#cccccc');
     line.setAttribute('stroke-width', major ? '2' : '1.2');
     line.setAttribute('stroke-linecap', 'round');
@@ -618,7 +619,10 @@ body {
     var capRate = parseFloat(document.getElementById('capRate').value)      || 0;
     var hold    = parseFloat(document.getElementById('holdPeriod').value)   || 7;
 
-    targetPct = Math.min(Math.max(capRate * 2.7, 0), 15);
+    // Recapture % is driven by cap rate (market efficiency) plus a small
+    // building-size factor — larger buildings have more latent inefficiency.
+    var sizeFactor = Math.min(sqft / 50000, 2.0); // 0–2 pts based on sqft
+    targetPct = Math.min(Math.max(capRate * 2.0 + sizeFactor, 0), 15);
 
     var recaptured   = sqft * (targetPct / 100);
     var annualRev    = rent * recaptured;
@@ -657,8 +661,11 @@ body {
   }
 
   // ── Wire up inputs ─────────────────────────────────────────────
+  // Listen to both 'input' (typing) and 'change' (tab-away / spin buttons)
   ['annualRent', 'buildingSqft', 'capRate', 'holdPeriod'].forEach(function (id) {
-    document.getElementById(id).addEventListener('input', calculate);
+    var el = document.getElementById(id);
+    el.addEventListener('input', calculate);
+    el.addEventListener('change', calculate);
   });
 
   // ── Init ───────────────────────────────────────────────────────
