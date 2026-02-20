@@ -15,8 +15,6 @@ body {
   padding: 60px 0;
 }
 
-/* MAIN CARD */
-
 .calculator-card {
   width: 619px;
   background: #ffffff;
@@ -28,12 +26,10 @@ body {
   flex-direction: column;
 }
 
-/* HEADER */
-
 .top-note {
-  font-size: 16px;
+  font-size: 15px;
   color: #7a7a7a;
-  margin-bottom: 25px;
+  margin-bottom: 22px;
 }
 
 /* INPUT GRID */
@@ -41,17 +37,17 @@ body {
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px 30px;
-  margin-bottom: 30px;
+  gap: 18px 28px;
+  margin-bottom: 26px;
 }
 
 .form-group label {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   color: #595959;
   display: block;
-  margin-bottom: 8px;
-  letter-spacing: 0.03em;
+  margin-bottom: 7px;
+  letter-spacing: 0.04em;
 }
 
 .form-group input {
@@ -60,10 +56,11 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 0 10px;
-  font-size: 14px;
+  font-size: 15px;
   box-sizing: border-box;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.15s;
+  color: #333;
 }
 
 .form-group input:focus {
@@ -73,13 +70,15 @@ body {
 /* METRICS BOX */
 
 .metrics-box {
+  width: 558px;
+  height: 238px;
   background: #FBFBFB;
   border-radius: 12px;
-  margin-bottom: 25px;
-  padding: 25px 25px 25px 40px;
+  margin: 0 auto 22px auto;
+  padding: 28px 10px 28px 36px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   box-sizing: border-box;
 }
 
@@ -89,115 +88,128 @@ body {
 }
 
 .metric-main {
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
+  white-space: nowrap;
 }
 
 .metric-sub {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 300;
-  color: #888;
+  color: #999;
   margin-bottom: 18px;
 }
 
 .client-average {
   font-size: 13px;
   color: #0E85A7;
-  margin-top: 6px;
-  white-space: nowrap;
+  margin-top: 4px;
 }
 
 /* DIAL SIDE */
 
 .dial-side {
-  width: 270px;
+  width: 280px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  right: -10px;
-  flex-shrink: 0;
 }
 
 .rsf-number {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   color: #595959;
   text-align: center;
+  margin-bottom: 2px;
 }
 
 .rsf-label {
-  font-size: 13px;
+  font-size: 12px;
   color: #595959;
-  margin-bottom: 10px;
   text-align: center;
+  margin-bottom: 6px;
 }
 
 /* DIAL */
 
-.dial {
-  width: 310px;
-  height: 145px;
+.dial-wrap {
   position: relative;
+  width: 260px;
+  height: 130px;
 }
 
-.dial svg {
+.dial-wrap svg {
   width: 100%;
   height: 100%;
+  overflow: visible;
+}
+
+.dial-center-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 4px;
+  pointer-events: none;
 }
 
 .dial-percent {
-  position: absolute;
-  top: 48px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   color: #595959;
+  line-height: 1;
+  margin-bottom: 2px;
 }
 
-.dial-text {
-  position: absolute;
-  top: 82px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 13px;
+.dial-label {
+  font-size: 12px;
   color: #0E85A7;
 }
 
 /* EQUIVALENCY BOX */
 
 .equivalency {
+  width: 558px;
+  height: 302px;
   background: #eeeeee;
   border-radius: 10px;
-  margin-bottom: 30px;
-  padding: 20px;
+  margin: 0 auto 26px auto;
+  padding: 18px 18px 18px 18px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .equivalency h4 {
   text-align: center;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 13px;
   color: #595959;
-  margin: 0 0 15px 0;
+  margin: 0 0 14px 0;
+  line-height: 1.4;
 }
 
 .cards {
   display: flex;
-  justify-content: space-between;
   gap: 10px;
+  flex: 1;
 }
 
 .card {
   flex: 1;
   background: #ffffff;
-  border-radius: 3px;
-  text-align: center;
-  padding: 12px 8px 16px 8px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 8px 14px 8px;
   box-sizing: border-box;
 }
 
@@ -209,50 +221,57 @@ body {
 }
 
 .card .big {
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 700;
   color: #595959;
-  margin-bottom: 4px;
   line-height: 1;
+  margin-bottom: 3px;
 }
 
 .card .avg {
-  font-size: 12px;
-  color: #888;
-  margin-bottom: 12px;
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 10px;
 }
 
-.card svg {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 8px;
+.card .floor-icon {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .floor-icon svg {
+  width: 90px;
+  height: 90px;
 }
 
 .card .mult {
   font-size: 15px;
   font-weight: 700;
   color: #595959;
+  margin-top: 8px;
 }
 
 /* FOOTER */
 
 .footer {
-  margin-top: auto;
   text-align: center;
   color: #585858;
-  padding: 40px 0 60px 0;
+  padding: 36px 0 56px 0;
 }
 
 .footer h3 {
   font-size: 20px;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
 }
 
 .footer p {
   font-size: 15px;
   font-weight: 300;
-  margin-bottom: 25px;
+  margin: 0 0 24px 0;
   line-height: 1.6;
 }
 
@@ -266,44 +285,16 @@ body {
   font-size: 15px;
 }
 
-.button:hover {
-  background: #222;
-}
-
-/* RESPONSIVE */
+.button:hover { background: #222; }
 
 @media (max-width: 680px) {
   body { padding: 20px 0; }
-
-  .calculator-card {
-    width: 95%;
-    padding: 24px 16px 0 16px;
-  }
-
-  .metrics-box {
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .dial-side {
-    width: 100%;
-    right: 0;
-  }
-
-  .dial {
-    width: 100%;
-  }
-
-  .cards {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    width: 100%;
-    max-width: 280px;
-  }
+  .calculator-card { width: 95%; padding: 22px 14px 0 14px; }
+  .metrics-box { width: 100%; height: auto; flex-direction: column; gap: 20px; padding: 20px; }
+  .dial-side { width: 100%; }
+  .equivalency { width: 100%; height: auto; }
+  .cards { flex-direction: column; }
+  .card { height: auto; }
 }
 
 </style>
@@ -335,91 +326,180 @@ body {
     </div>
   </div>
 
+  <!-- METRICS + DIAL -->
   <div class="metrics-box">
 
     <div class="metrics">
       <div class="metric-main" id="annualImpact">—</div>
       <div class="metric-sub">Annual / Hold-Period Revenue Impact</div>
-
       <div class="metric-main" id="assetValue">—</div>
       <div class="metric-sub">Modeled Asset Value Impact</div>
-
-      <div class="client-average">
-        Stevenson Systems Client Average: 6%
-      </div>
+      <div class="client-average">Stevenson Systems Client Average: 6%</div>
     </div>
 
     <div class="dial-side">
       <div class="rsf-number" id="rsfNumber">+0 RSF</div>
       <div class="rsf-label">Additional Rentable Area</div>
 
-      <div class="dial">
-        <svg viewBox="0 0 300 150" id="dialSvg">
-          <!-- Base arc -->
-          <path d="M20 140 A130 130 0 0 1 280 140"
-            fill="none" stroke="#e0e0e0" stroke-width="6" stroke-linecap="round"/>
+      <div class="dial-wrap">
+        <!--
+          SVG coordinate setup:
+          viewBox: -10 -10 280 150
+          Arc center: (120, 120), radius: 110
+          Left endpoint (0%):  (10,  120)
+          Right endpoint (15%): (230, 120)
+          Top (7.5%):           (120,  10)
+        -->
+        <svg id="dialSvg" viewBox="-10 -10 280 150">
 
-          <!-- Filled arc (animates) -->
+          <!-- Gray base arc: full semicircle left→right through top -->
+          <path id="baseArc"
+            d="M 10 120 A 110 110 0 0 1 230 120"
+            fill="none" stroke="#e0e0e0" stroke-width="7" stroke-linecap="round"/>
+
+          <!-- Teal filled arc (updated by JS) -->
           <path id="filledArc"
-            d="M20 140 A130 130 0 0 1 280 140"
-            fill="none" stroke="#0E85A7" stroke-width="6" stroke-linecap="round"
-            stroke-dasharray="0 1000"/>
+            fill="none" stroke="#0E85A7" stroke-width="7" stroke-linecap="round"/>
 
-          <!-- Tick marks -->
-          <g id="tickMarks"></g>
+          <!-- Tick marks (drawn by JS into this group) -->
+          <g id="tickGroup"></g>
 
           <!-- Indicator dot -->
-          <circle id="tickerDot" cx="20" cy="140" r="5" fill="#0E85A7"/>
+          <circle id="dialDot" cx="10" cy="120" r="6" fill="#0E85A7"/>
+
         </svg>
 
-        <div class="dial-percent" id="dialPercent">0.0%</div>
-        <div class="dial-text">Recaptured RSF (%)</div>
+        <div class="dial-center-text">
+          <div class="dial-percent" id="dialPercent">0.0%</div>
+          <div class="dial-label">Recaptured RSF (%)</div>
+        </div>
       </div>
     </div>
 
   </div>
 
+  <!-- EQUIVALENCY -->
   <div class="equivalency">
-    <h4 id="equivalencyTitle">— SF in captured square footage is functionally equivalent to:</h4>
+    <h4 id="equivTitle">— SF in captured square footage is functionally equivalent to:</h4>
 
     <div class="cards">
 
+      <!-- TENANTS -->
       <div class="card">
         <h5>Tenants</h5>
-        <div class="big" id="tenantsCount">0</div>
+        <div class="big" id="tenantsVal">0</div>
         <div class="avg">1,000 SF avg</div>
-        <!-- person icon -->
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="30" cy="18" r="9" fill="#d0d0d0"/>
-          <path d="M12 50c0-9.94 8.06-18 18-18s18 8.06 18 18" fill="#d0d0d0"/>
-        </svg>
+        <div class="floor-icon">
+          <!-- Small single-office floor plan -->
+          <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer walls -->
+            <rect x="5" y="5" width="80" height="80" stroke="#aaa" stroke-width="3" fill="#f9f9f9"/>
+            <!-- Reception desk area -->
+            <rect x="12" y="12" width="32" height="18" stroke="#bbb" stroke-width="1.5" fill="#e8e8e8"/>
+            <text x="28" y="24" font-size="5" fill="#888" text-anchor="middle">RECEPTION</text>
+            <!-- Private office 1 -->
+            <rect x="50" y="12" width="28" height="28" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
+            <text x="64" y="28" font-size="5" fill="#888" text-anchor="middle">OFFICE</text>
+            <!-- Corridor line -->
+            <line x1="12" y1="35" x2="78" y2="35" stroke="#ccc" stroke-width="1" stroke-dasharray="3 2"/>
+            <!-- Open workspace -->
+            <rect x="12" y="42" width="40" height="30" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
+            <text x="32" y="59" font-size="5" fill="#888" text-anchor="middle">WORKSPACE</text>
+            <!-- Bathroom -->
+            <rect x="57" y="42" width="21" height="14" stroke="#bbb" stroke-width="1.5" fill="#e8e8e8"/>
+            <text x="67" y="51" font-size="4.5" fill="#888" text-anchor="middle">BATH</text>
+            <!-- Storage -->
+            <rect x="57" y="58" width="21" height="14" stroke="#bbb" stroke-width="1.5" fill="#e8e8e8"/>
+            <text x="67" y="67" font-size="4.5" fill="#888" text-anchor="middle">STORAGE</text>
+            <!-- Door notch -->
+            <line x1="5" y1="55" x2="12" y2="55" stroke="#fff" stroke-width="3"/>
+            <path d="M 5 55 Q 5 48 12 48" stroke="#aaa" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
         <div class="mult" id="tenantsMult">x 0</div>
       </div>
 
+      <!-- SUITES -->
       <div class="card">
         <h5>Suites</h5>
-        <div class="big" id="suitesCount">0</div>
+        <div class="big" id="suitesVal">0</div>
         <div class="avg">3,000 SF avg</div>
-        <!-- door/suite icon -->
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="12" y="8" width="36" height="44" rx="2" fill="#d0d0d0"/>
-          <rect x="18" y="14" width="24" height="32" rx="1" fill="#fff"/>
-          <circle cx="37" cy="30" r="2" fill="#d0d0d0"/>
-        </svg>
+        <div class="floor-icon">
+          <!-- Multi-room suite floor plan -->
+          <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer walls -->
+            <rect x="3" y="3" width="84" height="84" stroke="#aaa" stroke-width="3" fill="#f9f9f9"/>
+            <!-- Interior walls dividing into rooms -->
+            <line x1="3" y1="38" x2="55" y2="38" stroke="#aaa" stroke-width="2"/>
+            <line x1="55" y1="3" x2="55" y2="87" stroke="#aaa" stroke-width="2"/>
+            <line x1="55" y1="55" x2="87" y2="55" stroke="#aaa" stroke-width="2"/>
+            <!-- Room labels -->
+            <!-- Top-left: Conference -->
+            <text x="29" y="23" font-size="5" fill="#888" text-anchor="middle">CONF</text>
+            <!-- Bottom-left: Open office -->
+            <text x="29" y="65" font-size="5" fill="#888" text-anchor="middle">OPEN</text>
+            <text x="29" y="72" font-size="5" fill="#888" text-anchor="middle">OFFICE</text>
+            <!-- Top-right: Private office -->
+            <text x="71" y="23" font-size="5" fill="#888" text-anchor="middle">OFFICE</text>
+            <!-- Bottom-right: Bathroom/kitchen -->
+            <text x="71" y="67" font-size="4.5" fill="#888" text-anchor="middle">KITCHEN</text>
+            <!-- Desk symbols in conf room -->
+            <rect x="12" y="16" width="22" height="14" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
+            <!-- Desk in private office -->
+            <rect x="62" y="12" width="18" height="12" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
+            <!-- Workstations in open office -->
+            <rect x="10" y="44" width="10" height="8" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
+            <rect x="24" y="44" width="10" height="8" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
+            <rect x="10" y="56" width="10" height="8" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
+            <rect x="24" y="56" width="10" height="8" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
+            <!-- Door -->
+            <line x1="3" y1="70" x2="3" y2="78" stroke="#fff" stroke-width="3"/>
+            <path d="M 3 70 Q 10 70 10 77" stroke="#aaa" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
         <div class="mult" id="suitesMult">x 0</div>
       </div>
 
+      <!-- FLOORS -->
       <div class="card">
         <h5>Floors</h5>
-        <div class="big" id="floorsCount">0</div>
+        <div class="big" id="floorsVal">0</div>
         <div class="avg">9,000 SF avg</div>
-        <!-- building floors icon -->
-        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="10" y="10" width="40" height="40" rx="2" fill="#d0d0d0"/>
-          <line x1="10" y1="24" x2="50" y2="24" stroke="#fff" stroke-width="2"/>
-          <line x1="10" y1="37" x2="50" y2="37" stroke="#fff" stroke-width="2"/>
-          <rect x="22" y="38" width="16" height="12" fill="#fff"/>
-        </svg>
+        <div class="floor-icon">
+          <!-- Full-floor plan with multiple suites around a core -->
+          <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer building outline -->
+            <rect x="2" y="2" width="86" height="86" stroke="#aaa" stroke-width="3" fill="#f9f9f9"/>
+            <!-- Central core (elevator/stairs) -->
+            <rect x="32" y="32" width="26" height="26" stroke="#bbb" stroke-width="2" fill="#e0e0e0"/>
+            <text x="45" y="47" font-size="4" fill="#888" text-anchor="middle">CORE</text>
+            <!-- Suite A - top left -->
+            <rect x="2" y="2" width="28" height="28" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
+            <text x="16" y="17" font-size="4.5" fill="#888" text-anchor="middle">SUITE</text>
+            <text x="16" y="23" font-size="4.5" fill="#888" text-anchor="middle">100</text>
+            <!-- Suite B - top right -->
+            <rect x="60" y="2" width="28" height="28" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
+            <text x="74" y="17" font-size="4.5" fill="#888" text-anchor="middle">SUITE</text>
+            <text x="74" y="23" font-size="4.5" fill="#888" text-anchor="middle">110</text>
+            <!-- Suite C - bottom left -->
+            <rect x="2" y="60" width="28" height="28" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
+            <text x="16" y="75" font-size="4.5" fill="#888" text-anchor="middle">SUITE</text>
+            <text x="16" y="81" font-size="4.5" fill="#888" text-anchor="middle">120</text>
+            <!-- Suite D - bottom right -->
+            <rect x="60" y="60" width="28" height="28" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
+            <text x="74" y="75" font-size="4.5" fill="#888" text-anchor="middle">SUITE</text>
+            <text x="74" y="81" font-size="4.5" fill="#888" text-anchor="middle">130</text>
+            <!-- Corridor lines -->
+            <line x1="30" y1="2"  x2="30" y2="32" stroke="#ccc" stroke-width="1"/>
+            <line x1="60" y1="2"  x2="60" y2="32" stroke="#ccc" stroke-width="1"/>
+            <line x1="30" y1="58" x2="30" y2="88" stroke="#ccc" stroke-width="1"/>
+            <line x1="60" y1="58" x2="60" y2="88" stroke="#ccc" stroke-width="1"/>
+            <line x1="2"  y1="30" x2="32" y2="30" stroke="#ccc" stroke-width="1"/>
+            <line x1="2"  y1="60" x2="32" y2="60" stroke="#ccc" stroke-width="1"/>
+            <line x1="58" y1="30" x2="88" y2="30" stroke="#ccc" stroke-width="1"/>
+            <line x1="58" y1="60" x2="88" y2="60" stroke="#ccc" stroke-width="1"/>
+          </svg>
+        </div>
         <div class="mult" id="floorsMult">x 0</div>
       </div>
 
@@ -438,149 +518,154 @@ body {
 </div>
 
 <script>
+(function () {
 
-class TruSpaceCalculator {
-  constructor() {
-    // Inputs
-    this.inputs = {
-      annualRent:   document.getElementById('annualRent'),
-      buildingSqft: document.getElementById('buildingSqft'),
-      capRate:      document.getElementById('capRate'),
-      holdPeriod:   document.getElementById('holdPeriod'),
+  // ── Arc geometry constants ─────────────────────────────────────
+  // SVG viewBox: -10 -10 280 150   (so visible area is -10..270 x -10..140)
+  // Arc: center (120, 120), radius 110
+  // Left endpoint  (pct=0):  (10,  120)   angle = π
+  // Right endpoint (pct=15): (230, 120)   angle = 0
+  // Top (pct=7.5):           (120,  10)   angle = π/2
+
+  var CX = 120, CY = 120, R = 110;
+
+  function ptOnArc(pct) {
+    // pct 0-15  →  angle π..0  (left to right through top)
+    var angle = Math.PI - (pct / 15) * Math.PI;
+    return {
+      x: CX + R * Math.cos(angle),
+      y: CY - R * Math.sin(angle)
     };
-
-    // Outputs
-    this.els = {
-      dialPercent:      document.getElementById('dialPercent'),
-      rsfNumber:        document.getElementById('rsfNumber'),
-      annualImpact:     document.getElementById('annualImpact'),
-      assetValue:       document.getElementById('assetValue'),
-      equivalencyTitle: document.getElementById('equivalencyTitle'),
-      tenantsCount:     document.getElementById('tenantsCount'),
-      suitesCount:      document.getElementById('suitesCount'),
-      floorsCount:      document.getElementById('floorsCount'),
-      tenantsMult:      document.getElementById('tenantsMult'),
-      suitesMult:       document.getElementById('suitesMult'),
-      floorsMult:       document.getElementById('floorsMult'),
-      filledArc:        document.getElementById('filledArc'),
-      tickerDot:        document.getElementById('tickerDot'),
-      tickMarks:        document.getElementById('tickMarks'),
-    };
-
-    this.currentPct = 0;
-    this.targetPct  = 0;
-
-    this.drawTickMarks();
-
-    Object.values(this.inputs).forEach(el =>
-      el.addEventListener('input', () => this.calculate())
-    );
-
-    this.calculate();
-    this.animate();
   }
 
-  // --- Tick marks around the semicircle arc ---
-  drawTickMarks() {
-    const cx = 150, cy = 140, r = 130;
-    const count = 20;
-    for (let i = 0; i <= count; i++) {
-      const angle = (i / count) * Math.PI; // 0→π left-to-right
-      const isMajor = i % 4 === 0;
-      const len = isMajor ? 12 : 6;
-      const ox = cx - r * Math.cos(angle);         // arc point (note: SVG x grows right, angle from left)
-      const oy = cy - r * Math.sin(angle);
-      const ix = cx - (r - len) * Math.cos(angle);
-      const iy = cy - (r - len) * Math.sin(angle);
-      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      line.setAttribute('x1', ox); line.setAttribute('y1', oy);
-      line.setAttribute('x2', ix); line.setAttribute('y2', iy);
-      line.setAttribute('stroke', '#c8c8c8');
-      line.setAttribute('stroke-width', isMajor ? 2 : 1.5);
-      line.setAttribute('stroke-linecap', 'round');
-      this.els.tickMarks.appendChild(line);
+  // ── Draw tick marks once ───────────────────────────────────────
+  var tickGroup = document.getElementById('tickGroup');
+
+  for (var i = 0; i <= 20; i++) {
+    var pctI  = (i / 20) * 15;
+    var pt    = ptOnArc(pctI);
+    var angle = Math.PI - (pctI / 15) * Math.PI;
+    var major = (i % 4 === 0);
+    var len   = major ? 11 : 6;
+
+    var innerX = CX + (R - len) * Math.cos(angle);
+    var innerY = CY - (R - len) * Math.sin(angle);
+
+    var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', pt.x.toFixed(2));
+    line.setAttribute('y1', pt.y.toFixed(2));
+    line.setAttribute('x2', innerX.toFixed(2));
+    line.setAttribute('y2', innerY.toFixed(2));
+    line.setAttribute('stroke', major ? '#b0b0b0' : '#cccccc');
+    line.setAttribute('stroke-width', major ? '2' : '1.2');
+    line.setAttribute('stroke-linecap', 'round');
+    tickGroup.appendChild(line);
+  }
+
+  // ── DOM refs ───────────────────────────────────────────────────
+  var filledArc  = document.getElementById('filledArc');
+  var dialDot    = document.getElementById('dialDot');
+  var dialPct    = document.getElementById('dialPercent');
+  var rsfNum     = document.getElementById('rsfNumber');
+  var annualEl   = document.getElementById('annualImpact');
+  var assetEl    = document.getElementById('assetValue');
+  var equivTitle = document.getElementById('equivTitle');
+  var tenantsVal = document.getElementById('tenantsVal');
+  var suitesVal  = document.getElementById('suitesVal');
+  var floorsVal  = document.getElementById('floorsVal');
+  var tenantsMult= document.getElementById('tenantsMult');
+  var suitesMult = document.getElementById('suitesMult');
+  var floorsMult = document.getElementById('floorsMult');
+
+  // ── Update SVG dial ────────────────────────────────────────────
+  function setDial(pct) {
+    dialPct.textContent = pct.toFixed(1) + '%';
+
+    var end = ptOnArc(pct);
+
+    if (pct < 0.05) {
+      filledArc.removeAttribute('d');
+      dialDot.setAttribute('cx', ptOnArc(0).x.toFixed(2));
+      dialDot.setAttribute('cy', ptOnArc(0).y.toFixed(2));
+      return;
     }
+
+    // large-arc-flag: the arc spans at most 180° (semicircle), so always 0
+    var d = 'M ' + ptOnArc(0).x.toFixed(2) + ' ' + ptOnArc(0).y.toFixed(2) +
+            ' A ' + R + ' ' + R + ' 0 0 1 ' +
+            end.x.toFixed(2) + ' ' + end.y.toFixed(2);
+
+    filledArc.setAttribute('d', d);
+    dialDot.setAttribute('cx', end.x.toFixed(2));
+    dialDot.setAttribute('cy', end.y.toFixed(2));
   }
 
-  // --- Core calculation ---
-  calculate() {
-    const rent     = parseFloat(this.inputs.annualRent.value)   || 0;
-    const sqft     = parseFloat(this.inputs.buildingSqft.value) || 0;
-    const capRate  = parseFloat(this.inputs.capRate.value)      || 0;
-    const hold     = parseFloat(this.inputs.holdPeriod.value)   || 7;
-
-    // Recaptured % is modelled as 2.7× cap rate, capped at 15%
-    this.targetPct = Math.min(Math.max(capRate * 2.7, 0), 15);
-
-    const recapturedSF  = sqft * (this.targetPct / 100);
-    const annualRevenue = rent * recapturedSF;
-    const holdRevenue   = annualRevenue * hold;
-    const assetImpact   = capRate > 0 ? annualRevenue / (capRate / 100) : 0;
-
-    this.updateMetrics(annualRevenue, holdRevenue, assetImpact, recapturedSF, hold);
-    this.updateEquivalency(recapturedSF);
+  // ── Format currency ────────────────────────────────────────────
+  function fmt(v) {
+    if (v >= 1e6) return '$' + (v / 1e6).toFixed(1) + 'M';
+    if (v >= 1e3) return '$' + Math.round(v / 1e3) + 'K';
+    return '$' + Math.round(v);
   }
 
-  // --- Update text outputs ---
-  updateMetrics(annual, holdTotal, assetImpact, recapturedSF, holdYears) {
-    const fmt = v => {
-      if (v >= 1e6)  return '$' + (v / 1e6).toFixed(1) + 'M';
-      if (v >= 1e3)  return '$' + (v / 1e3).toFixed(0) + 'K';
-      return '$' + v.toFixed(0);
-    };
-    this.els.annualImpact.textContent = fmt(annual) + ' / ' + fmt(holdTotal);
-    this.els.assetValue.textContent   = fmt(assetImpact);
-    this.els.rsfNumber.textContent    = '+' + recapturedSF.toLocaleString(undefined, {maximumFractionDigits: 0}) + ' RSF';
+  // ── State ──────────────────────────────────────────────────────
+  var currentPct = 0;
+  var targetPct  = 0;
+
+  // ── Calculate ─────────────────────────────────────────────────
+  function calculate() {
+    var rent    = parseFloat(document.getElementById('annualRent').value)   || 0;
+    var sqft    = parseFloat(document.getElementById('buildingSqft').value) || 0;
+    var capRate = parseFloat(document.getElementById('capRate').value)      || 0;
+    var hold    = parseFloat(document.getElementById('holdPeriod').value)   || 7;
+
+    targetPct = Math.min(Math.max(capRate * 2.7, 0), 15);
+
+    var recaptured   = sqft * (targetPct / 100);
+    var annualRev    = rent * recaptured;
+    var holdRev      = annualRev * hold;
+    var assetImpact  = capRate > 0 ? annualRev / (capRate / 100) : 0;
+
+    annualEl.textContent  = fmt(annualRev) + ' / ' + fmt(holdRev);
+    assetEl.textContent   = fmt(assetImpact);
+    rsfNum.textContent    = '+' + Math.round(recaptured).toLocaleString() + ' RSF';
+
+    var tenants = Math.max(Math.round(recaptured / 1000), 0);
+    var suites  = Math.max(Math.round(recaptured / 3000), 0);
+    var floors  = Math.max(Math.round(recaptured / 9000), 0);
+
+    tenantsVal.textContent  = tenants;
+    suitesVal.textContent   = suites;
+    floorsVal.textContent   = floors;
+    tenantsMult.textContent = 'x ' + tenants;
+    suitesMult.textContent  = 'x ' + suites;
+    floorsMult.textContent  = 'x ' + floors;
+
+    var sfStr = Math.round(recaptured).toLocaleString();
+    equivTitle.textContent = sfStr + ' SF in captured square footage is functionally equivalent to:';
   }
 
-  updateEquivalency(totalSF) {
-    const tenants = Math.max(Math.round(totalSF / 1000), 0);
-    const suites  = Math.max(Math.round(totalSF / 3000), 0);
-    const floors  = Math.max(Math.round(totalSF / 9000), 0);
-
-    this.els.tenantsCount.textContent = tenants;
-    this.els.suitesCount.textContent  = suites;
-    this.els.floorsCount.textContent  = floors;
-    this.els.tenantsMult.textContent  = 'x ' + tenants;
-    this.els.suitesMult.textContent   = 'x ' + suites;
-    this.els.floorsMult.textContent   = 'x ' + floors;
-
-    const sfStr = totalSF.toLocaleString(undefined, {maximumFractionDigits: 0});
-    this.els.equivalencyTitle.textContent =
-      sfStr + ' SF in captured square footage is functionally equivalent to:';
+  // ── Animation loop ─────────────────────────────────────────────
+  function tick() {
+    var diff = targetPct - currentPct;
+    if (Math.abs(diff) > 0.005) {
+      currentPct += diff * 0.1;
+    } else {
+      currentPct = targetPct;
+    }
+    setDial(currentPct);
+    requestAnimationFrame(tick);
   }
 
-  // --- Update dial SVG ---
-  updateDial(pct) {
-    const cx = 150, cy = 140, r = 130;
-    const fullLen = Math.PI * r;                 // ~408px
-    const filled  = (pct / 15) * fullLen;
+  // ── Wire up inputs ─────────────────────────────────────────────
+  ['annualRent', 'buildingSqft', 'capRate', 'holdPeriod'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', calculate);
+  });
 
-    this.els.filledArc.setAttribute('stroke-dasharray', filled + ' ' + fullLen);
-    this.els.dialPercent.textContent = pct.toFixed(1) + '%';
+  // ── Init ───────────────────────────────────────────────────────
+  calculate();
+  requestAnimationFrame(tick);
 
-    // Indicator dot: angle goes from π (left) → 0 (right) as pct 0→15
-    const angle = Math.PI - (pct / 15) * Math.PI;
-    const dx = cx + r * Math.cos(angle);
-    const dy = cy - r * Math.sin(angle);
-    this.els.tickerDot.setAttribute('cx', dx);
-    this.els.tickerDot.setAttribute('cy', dy);
-  }
-
-  // --- Animation loop ---
-  animate() {
-    const step = () => {
-      const diff = this.targetPct - this.currentPct;
-      this.currentPct += Math.abs(diff) > 0.01 ? diff * 0.12 : diff;
-      this.updateDial(this.currentPct);
-      requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', () => new TruSpaceCalculator());
-
+})();
 </script>
 </body>
 </html>
