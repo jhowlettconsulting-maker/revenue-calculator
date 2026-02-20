@@ -1,25 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TruSpace Calculator</title>
-    <style>
-        /* Add your styles here */
-        .dial { /* styles for the dial */ }
-        /* Include animations for the tick marks */
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruSpace Calculator</title>
+<style>
+
+body {
+  margin: 0;
+  background: #f5f5f5;
+  font-family: Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+/* MAIN CARD */
+
+.calculator-card {
+  width: 619px;
+  background: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  padding: 40px 30px 0 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+
+.top-note {
+  font-size: 16px;
+  color: #7a7a7a;
+  margin-bottom: 25px;
+}
+
+/* INPUT GRID */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 30px;
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #595959;
+  display: block;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+
+.form-group input {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  border-color: #0E85A7;
+}
+
+/* METRICS BOX */
+
+.metrics-box {
+  background: #FBFBFB;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  padding: 25px 25px 25px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.metrics {
+  color: #595959;
+  flex: 1;
+}
+
+.metric-main {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.metric-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: #888;
+  margin-bottom: 18px;
+}
+
+.client-average {
+  font-size: 13px;
+  color: #0E85A7;
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+/* DIAL SIDE */
+
+.dial-side {
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  right: -10px;
+  flex-shrink: 0;
+}
+
+.rsf-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #595959;
+  text-align: center;
+}
+
+.rsf-label {
+  font-size: 13px;
+  color: #595959;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* DIAL */
+
+.dial {
+  width: 310px;
+  height: 145px;
+  position: relative;
+}
+
+.dial svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dial-percent {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  color: #595959;
+}
+
+.dial-text {
+  position: absolute;
+  top: 82px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 13px;
+  color: #0E85A7;
+}
+
+/* EQUIVALENCY BOX */
+
+.equivalency {
+  background: #eeeeee;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.equivalency h4 {
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  color: #595959;
+  margin: 0 0 15px 0;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 3px;
+  text-align: center;
+  padding: 12px 8px 16px 8px;
+  box-sizing: border-box;
+}
+
+.card h5 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #595959;
+  margin: 0 0 4px 0;
+}
+
+.card .big {
+  font-size: 32px;
+  font-weight: 700;
+  color: #595959;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.card .avg {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.card svg {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 8px;
+}
+
+.card .mult {
+  font-size: 15px;
+  font-weight: 700;
+  color: #595959;
+}
+
+/* FOOTER */
+
+.footer {
+  margin-top: auto;
+  text-align: center;
+  color: #585858;
+  padding: 40px 0 60px 0;
+}
+
+.footer h3 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  font-size: 15px;
+  font-weight: 300;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 40px;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 1000px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.button:hover {
+  background: #222;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 680px) {
+  body { padding: 20px 0; }
+
+  .calculator-card {
+    width: 95%;
+    padding: 24px 16px 0 16px;
+  }
+
+  .metrics-box {
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .dial-side {
+    width: 100%;
+    right: 0;
+  }
+
+  .dial {
+    width: 100%;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+</style>
 </head>
 <body>
-    <h1>TruSpace Calculator</h1>
-    <div class="dial">
-        <!-- Dial and animated tick marks implementation here -->
+
+<div class="calculator-card">
+
+  <div class="top-note">
+    → Enter your building details below, the model updates in real time.
+  </div>
+
+  <div class="form-grid">
+    <div class="form-group">
+      <label>ANNUAL RENT ($/SF)</label>
+      <input type="number" id="annualRent" value="25" min="0" step="0.5">
     </div>
-    <div class="equivalency-box">
-        <!-- Equivalency calculations displayed here -->
+    <div class="form-group">
+      <label>BUILDING SQUARE FOOTAGE</label>
+      <input type="number" id="buildingSqft" value="50000" min="0" step="1000">
     </div>
-    <script>
-        // Live calculation features and dynamic tick marks update code
-    </script>
+    <div class="form-group">
+      <label>MARKET CAP RATE (%)</label>
+      <input type="number" id="capRate" value="5.5" min="0" max="15" step="0.1">
+    </div>
+    <div class="form-group">
+      <label>HOLD PERIOD (YEARS)</label>
+      <input type="number" id="holdPeriod" value="7" min="1" max="30" step="1">
+    </div>
+  </div>
+
+  <div class="metrics-box">
+
+    <div class="metrics">
+      <div class="metric-main" id="annualImpact">—</div>
+      <div class="metric-sub">Annual / Hold-Period Revenue Impact</div>
+
+      <div class="metric-main" id="assetValue">—</div>
+      <div class="metric-sub">Modeled Asset Value Impact</div>
+
+      <div class="client-average">
+        Stevenson Systems Client Average: 6%
+      </div>
+    </div>
+
+    <div class="dial-side">
+      <div class="rsf-number" id="rsfNumber">+0 RSF</div>
+      <div class="rsf-label">Additional Rentable Area</div>
+
+      <div class="dial">
+        <svg viewBox="0 0 300 150" id="dialSvg">
+          <!-- Base arc -->
+          <path d="M20 140 A130 130 0 0 1 280 140"
+            fill="none" stroke="#e0e0e0" stroke-width="6" stroke-linecap="round"/>
+
+          <!-- Filled arc (animates) -->
+          <path id="filledArc"
+            d="M20 140 A130 130 0 0 1 280 140"
+            fill="none" stroke="#0E85A7" stroke-width="6" stroke-linecap="round"
+            stroke-dasharray="0 1000"/>
+
+          <!-- Tick marks -->
+          <g id="tickMarks"></g>
+
+          <!-- Indicator dot -->
+          <circle id="tickerDot" cx="20" cy="140" r="5" fill="#0E85A7"/>
+        </svg>
+
+        <div class="dial-percent" id="dialPercent">0.0%</div>
+        <div class="dial-text">Recaptured RSF (%)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="equivalency">
+    <h4 id="equivalencyTitle">— SF in captured square footage is functionally equivalent to:</h4>
+
+    <div class="cards">
+
+      <div class="card">
+        <h5>Tenants</h5>
+        <div class="big" id="tenantsCount">0</div>
+        <div class="avg">1,000 SF avg</div>
+        <!-- person icon -->
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="18" r="9" fill="#d0d0d0"/>
+          <path d="M12 50c0-9.94 8.06-18 18-18s18 8.06 18 18" fill="#d0d0d0"/>
+        </svg>
+        <div class="mult" id="tenantsMult">x 0</div>
+      </div>
+
+      <div class="card">
+        <h5>Suites</h5>
+        <div class="big" id="suitesCount">0</div>
+        <div class="avg">3,000 SF avg</div>
+        <!-- door/suite icon -->
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="12" y="8" width="36" height="44" rx="2" fill="#d0d0d0"/>
+          <rect x="18" y="14" width="24" height="32" rx="1" fill="#fff"/>
+          <circle cx="37" cy="30" r="2" fill="#d0d0d0"/>
+        </svg>
+        <div class="mult" id="suitesMult">x 0</div>
+      </div>
+
+      <div class="card">
+        <h5>Floors</h5>
+        <div class="big" id="floorsCount">0</div>
+        <div class="avg">9,000 SF avg</div>
+        <!-- building floors icon -->
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="40" height="40" rx="2" fill="#d0d0d0"/>
+          <line x1="10" y1="24" x2="50" y2="24" stroke="#fff" stroke-width="2"/>
+          <line x1="10" y1="37" x2="50" y2="37" stroke="#fff" stroke-width="2"/>
+          <rect x="22" y="38" width="16" height="12" fill="#fff"/>
+        </svg>
+        <div class="mult" id="floorsMult">x 0</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <h3>Every building is different.</h3>
+    <p>
+      A brief assessment against your live data validates<br>
+      how this opportunity sits inside your building.
+    </p>
+    <a href="#" class="button">Book a Call</a>
+  </div>
+
+</div>
+
+<script>
+
+class TruSpaceCalculator {
+  constructor() {
+    // Inputs
+    this.inputs = {
+      annualRent:   document.getElementById('annualRent'),
+      buildingSqft: document.getElementById('buildingSqft'),
+      capRate:      document.getElementById('capRate'),
+      holdPeriod:   document.getElementById('holdPeriod'),
+    };
+
+    // Outputs
+    this.els = {
+      dialPercent:      document.getElementById('dialPercent'),
+      rsfNumber:        document.getElementById('rsfNumber'),
+      annualImpact:     document.getElementById('annualImpact'),
+      assetValue:       document.getElementById('assetValue'),
+      equivalencyTitle: document.getElementById('equivalencyTitle'),
+      tenantsCount:     document.getElementById('tenantsCount'),
+      suitesCount:      document.getElementById('suitesCount'),
+      floorsCount:      document.getElementById('floorsCount'),
+      tenantsMult:      document.getElementById('tenantsMult'),
+      suitesMult:       document.getElementById('suitesMult'),
+      floorsMult:       document.getElementById('floorsMult'),
+      filledArc:        document.getElementById('filledArc'),
+      tickerDot:        document.getElementById('tickerDot'),
+      tickMarks:        document.getElementById('tickMarks'),
+    };
+
+    this.currentPct = 0;
+    this.targetPct  = 0;
+
+    this.drawTickMarks();
+
+    Object.values(this.inputs).forEach(el =>
+      el.addEventListener('input', () => this.calculate())
+    );
+
+    this.calculate();
+    this.animate();
+  }
+
+  // --- Tick marks around the semicircle arc ---
+  drawTickMarks() {
+    const cx = 150, cy = 140, r = 130;
+    const count = 20;
+    for (let i = 0; i <= count; i++) {
+      const angle = (i / count) * Math.PI; // 0→π left-to-right
+      const isMajor = i % 4 === 0;
+      const len = isMajor ? 12 : 6;
+      const ox = cx - r * Math.cos(angle);         // arc point (note: SVG x grows right, angle from left)
+      const oy = cy - r * Math.sin(angle);
+      const ix = cx - (r - len) * Math.cos(angle);
+      const iy = cy - (r - len) * Math.sin(angle);
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', ox); line.setAttribute('y1', oy);
+      line.setAttribute('x2', ix); line.setAttribute('y2', iy);
+      line.setAttribute('stroke', '#c8c8c8');
+      line.setAttribute('stroke-width', isMajor ? 2 : 1.5);
+      line.setAttribute('stroke-linecap', 'round');
+      this.els.tickMarks.appendChild(line);
+    }
+  }
+
+  // --- Core calculation ---
+  calculate() {
+    const rent     = parseFloat(this.inputs.annualRent.value)   || 0;
+    const sqft     = parseFloat(this.inputs.buildingSqft.value) || 0;
+    const capRate  = parseFloat(this.inputs.capRate.value)      || 0;
+    const hold     = parseFloat(this.inputs.holdPeriod.value)   || 7;
+
+    // Recaptured % is modelled as 2.7× cap rate, capped at 15%
+    this.targetPct = Math.min(Math.max(capRate * 2.7, 0), 15);
+
+    const recapturedSF  = sqft * (this.targetPct / 100);
+    const annualRevenue = rent * recapturedSF;
+    const holdRevenue   = annualRevenue * hold;
+    const assetImpact   = capRate > 0 ? annualRevenue / (capRate / 100) : 0;
+
+    this.updateMetrics(annualRevenue, holdRevenue, assetImpact, recapturedSF, hold);
+    this.updateEquivalency(recapturedSF);
+  }
+
+  // --- Update text outputs ---
+  updateMetrics(annual, holdTotal, assetImpact, recapturedSF, holdYears) {
+    const fmt = v => {
+      if (v >= 1e6)  return '$' + (v / 1e6).toFixed(1) + 'M';
+      if (v >= 1e3)  return '$' + (v / 1e3).toFixed(0) + 'K';
+      return '$' + v.toFixed(0);
+    };
+    this.els.annualImpact.textContent = fmt(annual) + ' / ' + fmt(holdTotal);
+    this.els.assetValue.textContent   = fmt(assetImpact);
+    this.els.rsfNumber.textContent    = '+' + recapturedSF.toLocaleString(undefined, {maximumFractionDigits: 0}) + ' RSF';
+  }
+
+  updateEquivalency(totalSF) {
+    const tenants = Math.max(Math.round(totalSF / 1000), 0);
+    const suites  = Math.max(Math.round(totalSF / 3000), 0);
+    const floors  = Math.max(Math.round(totalSF / 9000), 0);
+
+    this.els.tenantsCount.textContent = tenants;
+    this.els.suitesCount.textContent  = suites;
+    this.els.floorsCount.textContent  = floors;
+    this.els.tenantsMult.textContent  = 'x ' + tenants;
+    this.els.suitesMult.textContent   = 'x ' + suites;
+    this.els.floorsMult.textContent   = 'x ' + floors;
+
+    const sfStr = totalSF.toLocaleString(undefined, {maximumFractionDigits: 0});
+    this.els.equivalencyTitle.textContent =
+      sfStr + ' SF in captured square footage is functionally equivalent to:';
+  }
+
+  // --- Update dial SVG ---
+  updateDial(pct) {
+    const cx = 150, cy = 140, r = 130;
+    const fullLen = Math.PI * r;                 // ~408px
+    const filled  = (pct / 15) * fullLen;
+
+    this.els.filledArc.setAttribute('stroke-dasharray', filled + ' ' + fullLen);
+    this.els.dialPercent.textContent = pct.toFixed(1) + '%';
+
+    // Indicator dot: angle goes from π (left) → 0 (right) as pct 0→15
+    const angle = Math.PI - (pct / 15) * Math.PI;
+    const dx = cx + r * Math.cos(angle);
+    const dy = cy - r * Math.sin(angle);
+    this.els.tickerDot.setAttribute('cx', dx);
+    this.els.tickerDot.setAttribute('cy', dy);
+  }
+
+  // --- Animation loop ---
+  animate() {
+    const step = () => {
+      const diff = this.targetPct - this.currentPct;
+      this.currentPct += Math.abs(diff) > 0.01 ? diff * 0.12 : diff;
+      this.updateDial(this.currentPct);
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => new TruSpaceCalculator());
+
+</script>
 </body>
 </html>
