@@ -83,26 +83,29 @@ body {
 
 .form-group input:focus { border-color: #0E85A7; }
 
-/* ── METRICS + DIAL ROW ───────────────────────────────── */
+/* ── SINGLE METRICS + DIAL BOX ────────────────────────── */
 
-.metrics-row {
+.metrics-box {
+  width: 558px;
+  height: 238px;
+  background: #FBFBFB;
+  border-radius: 12px;
+  margin: 14px auto 0 auto;
   display: flex;
-  gap: 10px;
-  padding: 0 30px;
+  gap: 20px;
   align-items: stretch;
+  overflow: hidden;
 }
 
 /* LEFT STATS */
 
-.stats-box {
-  width: 246px;
+.stats-section {
+  width: 255px;
   flex-shrink: 0;
-  background: #F4F4F4;
-  border-radius: 5px;
-  padding: 18px 20px 18px 20px;
+  padding: 50px 20px 20px 36px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .metric-main {
@@ -123,27 +126,28 @@ body {
 }
 
 .client-average {
-  font-size: 12px;
+  font-size: 11px;
   color: #0E85A7;
   font-weight: 400;
   white-space: nowrap;
+  margin-top: auto;
 }
 
-/* RIGHT DIAL BOX */
+/* RIGHT DIAL COLUMN */
 
-.dial-box {
+.dial-column {
   flex: 1;
-  background: #F4F4F4;
-  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 14px 0 0 0;
-  overflow: hidden;
+  justify-content: flex-end;
+  padding-left: 14px;
+  padding-right: 6px;
+  padding-bottom: 0;
 }
 
 .rsf-number {
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 700;
   color: #333;
   text-align: center;
@@ -156,7 +160,7 @@ body {
   font-weight: 300;
   color: #595959;
   text-align: center;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .dial-wrap {
@@ -172,31 +176,6 @@ body {
 .dial-wrap svg {
   width: 100%;
   display: block;
-}
-
-.dial-center-text {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 48px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.dial-percent {
-  font-size: 19px;
-  font-weight: 700;
-  color: #333;
-  line-height: 1;
-  margin-bottom: 3px;
-}
-
-.dial-label {
-  font-size: 11px;
-  color: #0E85A7;
-  font-weight: 400;
 }
 
 /* ── EQUIVALENCY BOX ──────────────────────────────────── */
@@ -314,8 +293,9 @@ body {
 @media (max-width: 680px) {
   body { padding: 20px 0; }
   .calculator-card { width: 95%; }
-  .metrics-row { flex-direction: column; padding: 0 16px; }
-  .stats-box { width: 100%; }
+  .metrics-box { width: 100%; height: auto; flex-direction: column; }
+  .stats-section { width: 100%; padding: 24px 20px 20px 24px; }
+  .dial-column { padding: 0 16px 16px 16px; }
   .equivalency { width: 100%; }
   .cards { flex-direction: column; }
 }
@@ -353,10 +333,10 @@ body {
     </div>
   </div>
 
-  <!-- METRICS + DIAL -->
-  <div class="metrics-row">
+  <!-- SINGLE METRICS + DIAL BOX (558×238, #FBFBFB) -->
+  <div class="metrics-box">
 
-    <div class="stats-box">
+    <div class="stats-section">
       <div class="metric-main" id="annualImpact">—</div>
       <div class="metric-sub">Annual / Hold-Period Revenue Impact</div>
       <div class="metric-main" id="assetValue">—</div>
@@ -364,44 +344,51 @@ body {
       <div class="client-average">Stevenson Systems Client Average: 6%</div>
     </div>
 
-    <div class="dial-box">
+    <div class="dial-column">
       <div class="rsf-number" id="rsfNumber">+0 RSF</div>
       <div class="rsf-label">Additional Rentable Area</div>
 
       <div class="dial-wrap" id="dialWrap">
         <!--
-          viewBox 0 0 300 200
+          viewBox "0 12 300 142" — arc endpoints at y=150 land at 97% of
+          SVG height, making the arc flush with the box bottom edge.
           Arc center: (150, 150), radius: 120
-          Left endpoint (0%):   angle=π   → (30, 150)
-          Top   (8%, center):   angle=π/2 → (150, 30)
-          Right endpoint (15%): angle→0   → (270, 150)
-          Non-linear mapping: 0–8% occupies left half, 8–15% occupies right half
+          Left (0%): angle=π → (30,150)  Top (8%): angle=π/2 → (150,30)
+          Right (15%): angle→0 → (270,150)
         -->
-        <svg id="dialSvg" viewBox="0 0 300 200">
+        <svg id="dialSvg" viewBox="0 12 300 142">
 
           <!-- Base arc: grey full semicircle -->
           <path id="baseArc"
             d="M 30 150 A 120 120 0 0 1 270 150"
             fill="none" stroke="#CFCFCF" stroke-width="6" stroke-linecap="round"/>
 
-          <!-- Active arc: dark grey, updated by JS -->
+          <!-- Active arc: teal, updated by JS -->
           <path id="activeArc"
-            fill="none" stroke="#4F4F4F" stroke-width="6" stroke-linecap="round"/>
+            fill="none" stroke="#49A2BD" stroke-width="6" stroke-linecap="round"/>
 
           <!-- Tick marks: drawn by JS -->
           <g id="tickGroup"></g>
 
-          <!-- Control tag handle: positioned + rotated by JS -->
+          <!-- Control tag: 14×50 rounded rect, radially rotated by JS -->
           <rect id="controlTag"
-            x="-1.5" y="-7" width="3" height="14" rx="2" ry="2"
-            fill="#BDBDBD"/>
+            x="-7" y="-25" width="14" height="50" rx="2" ry="2"
+            fill="#49A2DB"/>
+
+          <!-- Percentage + label live inside the SVG, centered in the arc dome -->
+          <text id="dialPercent"
+            x="150" y="116"
+            text-anchor="middle"
+            font-size="28" font-weight="700" fill="#333"
+            font-family="Helvetica,Arial,sans-serif">0.0%</text>
+
+          <text id="dialLabel"
+            x="150" y="137"
+            text-anchor="middle"
+            font-size="19" font-weight="300" fill="#49A2BD"
+            font-family="Helvetica,Arial,sans-serif">Recaptured RSF (%)</text>
 
         </svg>
-
-        <div class="dial-center-text">
-          <div class="dial-percent" id="dialPercent">0.0%</div>
-          <div class="dial-label">Recaptured RSF (%)</div>
-        </div>
       </div>
     </div>
 
