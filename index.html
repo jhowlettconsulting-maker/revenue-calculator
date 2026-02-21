@@ -6,200 +6,223 @@
 <title>TruSpace Calculator</title>
 <style>
 
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  background: #f5f5f5;
+  background: #f0f0f0;
   font-family: Helvetica, Arial, sans-serif;
   display: flex;
   justify-content: center;
   padding: 60px 0;
 }
 
+/* ── CARD ─────────────────────────────────────────────── */
+
 .calculator-card {
-  width: 619px;
+  width: 613px;
   background: #ffffff;
-  border-radius: 30px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-  padding: 40px 30px 0 30px;
-  box-sizing: border-box;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.09);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-.top-note {
+/* ── TOP STRIP ────────────────────────────────────────── */
+
+.top-strip {
+  background: #F4F4F4;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 15px;
-  color: #7a7a7a;
-  margin-bottom: 22px;
+  font-weight: 300;
+  color: #666;
+  flex-shrink: 0;
+  letter-spacing: 0.01em;
 }
 
-/* INPUT GRID */
+/* ── FORM ─────────────────────────────────────────────── */
+
+.form-section {
+  padding: 20px 30px 16px 30px;
+}
 
 .form-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px 28px;
-  margin-bottom: 26px;
+  column-gap: 7px;
+  row-gap: 12px;
 }
 
 .form-group label {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: #595959;
   display: block;
-  margin-bottom: 7px;
-  letter-spacing: 0.04em;
+  margin-bottom: 5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .form-group input {
   width: 100%;
-  height: 40px;
+  height: 39px;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 6px;
   padding: 0 10px;
-  font-size: 15px;
-  box-sizing: border-box;
+  font-size: 14px;
   outline: none;
-  transition: border-color 0.15s;
   color: #333;
+  font-family: Helvetica, Arial, sans-serif;
+  transition: border-color 0.15s;
+  background: #fff;
 }
 
-.form-group input:focus {
-  border-color: #0E85A7;
-}
+.form-group input:focus { border-color: #0E85A7; }
 
-/* METRICS BOX */
+/* ── METRICS + DIAL ROW ───────────────────────────────── */
 
-.metrics-box {
-  width: 558px;
-  height: 238px;
-  background: #FBFBFB;
-  border-radius: 12px;
-  margin: 0 auto 22px auto;
-  padding: 28px 10px 28px 36px;
+.metrics-row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
+  gap: 10px;
+  padding: 0 30px;
+  align-items: stretch;
 }
 
-.metrics {
-  color: #595959;
-  flex: 1;
+/* LEFT STATS */
+
+.stats-box {
+  width: 246px;
+  flex-shrink: 0;
+  background: #F4F4F4;
+  border-radius: 5px;
+  padding: 18px 20px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .metric-main {
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 3px;
+  color: #333;
   white-space: nowrap;
+  line-height: 1.15;
+  margin-bottom: 3px;
 }
 
 .metric-sub {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 300;
   color: #999;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
+  line-height: 1.35;
 }
 
 .client-average {
-  font-size: 13px;
+  font-size: 12px;
   color: #0E85A7;
-  margin-top: 4px;
+  font-weight: 400;
+  white-space: nowrap;
 }
 
-/* DIAL SIDE */
+/* RIGHT DIAL BOX */
 
-.dial-side {
-  width: 280px;
-  flex-shrink: 0;
+.dial-box {
+  flex: 1;
+  background: #F4F4F4;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 14px 0 0 0;
+  overflow: hidden;
 }
 
 .rsf-number {
-  font-size: 22px;
+  font-size: 25px;
   font-weight: 700;
-  color: #595959;
+  color: #333;
   text-align: center;
-  margin-bottom: 2px;
-}
-
-.rsf-label {
-  font-size: 12px;
-  color: #595959;
-  text-align: center;
-  margin-bottom: 6px;
-}
-
-/* DIAL */
-
-.dial-wrap {
-  position: relative;
-  width: 260px;
-  height: 130px;
-}
-
-.dial-wrap svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.dial-center-text {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding-bottom: 4px;
-  pointer-events: none;
-}
-
-.dial-percent {
-  font-size: 24px;
-  font-weight: 700;
-  color: #595959;
   line-height: 1;
   margin-bottom: 2px;
 }
 
-.dial-label {
-  font-size: 12px;
-  color: #0E85A7;
+.rsf-label {
+  font-size: 11px;
+  font-weight: 300;
+  color: #595959;
+  text-align: center;
+  margin-bottom: 4px;
 }
 
-/* EQUIVALENCY BOX */
+.dial-wrap {
+  position: relative;
+  width: 100%;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.dial-wrap:active { cursor: grabbing; }
+
+.dial-wrap svg {
+  width: 100%;
+  display: block;
+}
+
+.dial-center-text {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.dial-percent {
+  font-size: 19px;
+  font-weight: 700;
+  color: #333;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.dial-label {
+  font-size: 11px;
+  color: #0E85A7;
+  font-weight: 400;
+}
+
+/* ── EQUIVALENCY BOX ──────────────────────────────────── */
 
 .equivalency {
-  width: 558px;
-  height: 302px;
-  background: #eeeeee;
-  border-radius: 10px;
-  margin: 0 auto 26px auto;
-  padding: 18px 18px 18px 18px;
-  box-sizing: border-box;
+  width: 553px;
+  background: #EEEEEE;
+  border-radius: 14px;
+  margin: 14px auto 0 auto;
+  padding: 16px 14px 14px 14px;
   display: flex;
   flex-direction: column;
 }
 
-.equivalency h4 {
+.equiv-title {
   text-align: center;
+  font-size: 12px;
   font-weight: 400;
-  font-size: 13px;
   color: #595959;
-  margin: 0 0 14px 0;
-  line-height: 1.4;
+  margin: 0 0 10px 0;
+  line-height: 1.45;
 }
 
 .cards {
   display: flex;
   gap: 10px;
-  flex: 1;
 }
 
 .card {
@@ -209,92 +232,92 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 14px 8px 14px 8px;
-  box-sizing: border-box;
+  padding: 12px 6px 10px 6px;
 }
 
-.card h5 {
-  font-size: 13px;
+.card-title {
+  font-size: 12px;
   font-weight: 600;
   color: #595959;
-  margin: 0 0 4px 0;
+  margin: 0 0 2px 0;
 }
 
-.card .big {
-  font-size: 30px;
+.card-number {
+  font-size: 28px;
   font-weight: 700;
-  color: #595959;
+  color: #333;
+  font-family: system-ui, Helvetica, sans-serif;
   line-height: 1;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
 }
 
-.card .avg {
-  font-size: 11px;
-  color: #999;
-  margin-bottom: 10px;
+.card-avg {
+  font-size: 10px;
+  color: #aaa;
+  margin-bottom: 6px;
 }
 
-.card .floor-icon {
+.floor-icon {
   flex: 1;
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.card .floor-icon svg {
-  width: 90px;
-  height: 90px;
-}
-
-.card .mult {
-  font-size: 15px;
+.card-mult {
+  font-size: 13px;
   font-weight: 700;
   color: #595959;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
-/* FOOTER */
+/* ── FOOTER ───────────────────────────────────────────── */
 
 .footer {
   text-align: center;
-  color: #585858;
-  padding: 36px 0 56px 0;
+  padding: 28px 30px 46px 30px;
 }
 
 .footer h3 {
   font-size: 20px;
   font-weight: 500;
-  margin: 0 0 10px 0;
+  color: #333;
+  margin: 0 0 8px 0;
 }
 
 .footer p {
   font-size: 15px;
   font-weight: 300;
-  margin: 0 0 24px 0;
+  color: #585858;
+  margin: 0 0 22px 0;
   line-height: 1.6;
 }
 
-.button {
+.btn-book {
   display: inline-block;
-  padding: 12px 40px;
-  background: #000000;
-  color: #ffffff;
+  width: 117px;
+  height: 36px;
+  line-height: 36px;
+  background: #000;
+  color: #fff;
   border-radius: 1000px;
   text-decoration: none;
   font-size: 15px;
+  font-family: Helvetica, Arial, sans-serif;
+  text-align: center;
 }
 
-.button:hover { background: #222; }
+.btn-book:hover { background: #222; }
+
+/* ── RESPONSIVE ───────────────────────────────────────── */
 
 @media (max-width: 680px) {
   body { padding: 20px 0; }
-  .calculator-card { width: 95%; padding: 22px 14px 0 14px; }
-  .metrics-box { width: 100%; height: auto; flex-direction: column; gap: 20px; padding: 20px; }
-  .dial-side { width: 100%; }
-  .equivalency { width: 100%; height: auto; }
+  .calculator-card { width: 95%; }
+  .metrics-row { flex-direction: column; padding: 0 16px; }
+  .stats-box { width: 100%; }
+  .equivalency { width: 100%; }
   .cards { flex-direction: column; }
-  .card { height: auto; }
 }
 
 </style>
@@ -303,33 +326,37 @@ body {
 
 <div class="calculator-card">
 
-  <div class="top-note">
+  <!-- TOP STRIP -->
+  <div class="top-strip">
     → Enter your building details below, the model updates in real time.
   </div>
 
-  <div class="form-grid">
-    <div class="form-group">
-      <label>ANNUAL RENT ($/SF)</label>
-      <input type="number" id="annualRent" value="25" min="0" step="0.5">
-    </div>
-    <div class="form-group">
-      <label>BUILDING SQUARE FOOTAGE</label>
-      <input type="number" id="buildingSqft" value="50000" min="0" step="1000">
-    </div>
-    <div class="form-group">
-      <label>MARKET CAP RATE (%)</label>
-      <input type="number" id="capRate" value="5.5" min="0" max="15" step="0.1">
-    </div>
-    <div class="form-group">
-      <label>HOLD PERIOD (YEARS)</label>
-      <input type="number" id="holdPeriod" value="7" min="1" max="30" step="1">
+  <!-- INPUTS -->
+  <div class="form-section">
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Annual Rent ($/SF)</label>
+        <input type="number" id="annualRent" value="25" min="0" step="0.5">
+      </div>
+      <div class="form-group">
+        <label>Building Square Footage</label>
+        <input type="number" id="buildingSqft" value="50000" min="0" step="1000">
+      </div>
+      <div class="form-group">
+        <label>Market Cap Rate (%)</label>
+        <input type="number" id="capRate" value="5.5" min="0" max="15" step="0.1">
+      </div>
+      <div class="form-group">
+        <label>Hold Period (Years)</label>
+        <input type="number" id="holdPeriod" value="7" min="1" max="30" step="1">
+      </div>
     </div>
   </div>
 
   <!-- METRICS + DIAL -->
-  <div class="metrics-box">
+  <div class="metrics-row">
 
-    <div class="metrics">
+    <div class="stats-box">
       <div class="metric-main" id="annualImpact">—</div>
       <div class="metric-sub">Annual / Hold-Period Revenue Impact</div>
       <div class="metric-main" id="assetValue">—</div>
@@ -337,35 +364,37 @@ body {
       <div class="client-average">Stevenson Systems Client Average: 6%</div>
     </div>
 
-    <div class="dial-side">
+    <div class="dial-box">
       <div class="rsf-number" id="rsfNumber">+0 RSF</div>
       <div class="rsf-label">Additional Rentable Area</div>
 
-      <div class="dial-wrap">
+      <div class="dial-wrap" id="dialWrap">
         <!--
-          SVG coordinate setup:
-          viewBox: -10 -10 280 150
-          Arc center: (120, 120), radius: 110
-          Left endpoint (0%):  (10,  120)
-          Right endpoint (15%): (230, 120)
-          Top (7.5%):           (120,  10)
+          viewBox 0 0 300 200
+          Arc center: (150, 150), radius: 120
+          Left endpoint (0%):   angle=π   → (30, 150)
+          Top   (8%, center):   angle=π/2 → (150, 30)
+          Right endpoint (15%): angle→0   → (270, 150)
+          Non-linear mapping: 0–8% occupies left half, 8–15% occupies right half
         -->
-        <svg id="dialSvg" viewBox="-10 -10 280 150">
+        <svg id="dialSvg" viewBox="0 0 300 200">
 
-          <!-- Gray base arc: full semicircle left→right through top -->
+          <!-- Base arc: grey full semicircle -->
           <path id="baseArc"
-            d="M 10 120 A 110 110 0 0 1 230 120"
-            fill="none" stroke="#e0e0e0" stroke-width="7" stroke-linecap="round"/>
+            d="M 30 150 A 120 120 0 0 1 270 150"
+            fill="none" stroke="#CFCFCF" stroke-width="6" stroke-linecap="round"/>
 
-          <!-- Teal filled arc (updated by JS) -->
-          <path id="filledArc"
-            fill="none" stroke="#0E85A7" stroke-width="7" stroke-linecap="round"/>
+          <!-- Active arc: dark grey, updated by JS -->
+          <path id="activeArc"
+            fill="none" stroke="#4F4F4F" stroke-width="6" stroke-linecap="round"/>
 
-          <!-- Tick marks (drawn by JS into this group) -->
+          <!-- Tick marks: drawn by JS -->
           <g id="tickGroup"></g>
 
-          <!-- Indicator dot -->
-          <circle id="dialDot" cx="10" cy="120" r="6" fill="#0E85A7"/>
+          <!-- Control tag handle: positioned + rotated by JS -->
+          <rect id="controlTag"
+            x="-1.5" y="-7" width="3" height="14" rx="2" ry="2"
+            fill="#BDBDBD"/>
 
         </svg>
 
@@ -380,139 +409,113 @@ body {
 
   <!-- EQUIVALENCY -->
   <div class="equivalency">
-    <h4 id="equivTitle">— SF in captured square footage is functionally equivalent to:</h4>
+    <p class="equiv-title" id="equivTitle">— SF in captured square footage is functionally equivalent to:</p>
 
     <div class="cards">
 
       <!-- TENANTS -->
       <div class="card">
-        <h5>Tenants</h5>
-        <div class="big" id="tenantsVal">0</div>
-        <div class="avg">1,000 SF avg</div>
+        <div class="card-title">Tenants</div>
+        <div class="card-number" id="tenantsVal">0</div>
+        <div class="card-avg">1,000 SF avg</div>
         <div class="floor-icon">
-          <!-- Small single-office floor plan -->
-          <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Outer walls -->
-            <rect x="5" y="5" width="80" height="80" stroke="#aaa" stroke-width="3" fill="#f9f9f9"/>
-            <!-- Reception desk area -->
-            <rect x="12" y="12" width="32" height="18" stroke="#bbb" stroke-width="1.5" fill="#e8e8e8"/>
-            <text x="28" y="24" font-size="5" fill="#888" text-anchor="middle">RECEPTION</text>
-            <!-- Private office 1 -->
-            <rect x="50" y="12" width="28" height="28" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
-            <text x="64" y="28" font-size="5" fill="#888" text-anchor="middle">OFFICE</text>
-            <!-- Corridor line -->
-            <line x1="12" y1="35" x2="78" y2="35" stroke="#ccc" stroke-width="1" stroke-dasharray="3 2"/>
-            <!-- Open workspace -->
-            <rect x="12" y="42" width="40" height="30" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
-            <text x="32" y="59" font-size="5" fill="#888" text-anchor="middle">WORKSPACE</text>
-            <!-- Bathroom -->
-            <rect x="57" y="42" width="21" height="14" stroke="#bbb" stroke-width="1.5" fill="#e8e8e8"/>
-            <text x="67" y="51" font-size="4.5" fill="#888" text-anchor="middle">BATH</text>
-            <!-- Storage -->
-            <rect x="57" y="58" width="21" height="14" stroke="#bbb" stroke-width="1.5" fill="#e8e8e8"/>
-            <text x="67" y="67" font-size="4.5" fill="#888" text-anchor="middle">STORAGE</text>
-            <!-- Door notch -->
-            <line x1="5" y1="55" x2="12" y2="55" stroke="#fff" stroke-width="3"/>
-            <path d="M 5 55 Q 5 48 12 48" stroke="#aaa" stroke-width="1.5" fill="none"/>
+          <!-- Single office, green tint -->
+          <svg width="78" height="76" viewBox="0 0 78 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="70" height="68" rx="1" fill="#F1F8E9"/>
+            <rect x="4" y="4" width="70" height="68" rx="1" stroke="#7CB342" stroke-width="2"/>
+            <!-- Partition -->
+            <line x1="4" y1="38" x2="52" y2="38" stroke="#7CB342" stroke-width="1.5"/>
+            <line x1="52" y1="4" x2="52" y2="72" stroke="#7CB342" stroke-width="1.5"/>
+            <!-- Desk top-left -->
+            <rect x="10" y="10" width="24" height="16" rx="1" fill="#C5E1A5" stroke="#8BC34A" stroke-width="1"/>
+            <!-- Side return -->
+            <rect x="10" y="10" width="8" height="22" rx="1" fill="#DCEDC8" stroke="#AED581" stroke-width="1"/>
+            <!-- Desk top-right room -->
+            <rect x="58" y="10" width="10" height="10" rx="1" fill="#C5E1A5" stroke="#8BC34A" stroke-width="1"/>
+            <!-- Bottom open area marks -->
+            <rect x="10" y="44" width="32" height="6" rx="1" fill="#DCEDC8" stroke="#AED581" stroke-width="1"/>
+            <rect x="10" y="54" width="20" height="6" rx="1" fill="#DCEDC8" stroke="#AED581" stroke-width="1"/>
+            <!-- Door arc -->
+            <line x1="4" y1="58" x2="4" y2="66" stroke="#F1F8E9" stroke-width="2.5"/>
+            <path d="M4 58 Q14 58 14 66" stroke="#7CB342" stroke-width="1.2" fill="none"/>
           </svg>
         </div>
-        <div class="mult" id="tenantsMult">x 0</div>
+        <div class="card-mult" id="tenantsMult">x 0</div>
       </div>
 
       <!-- SUITES -->
       <div class="card">
-        <h5>Suites</h5>
-        <div class="big" id="suitesVal">0</div>
-        <div class="avg">3,000 SF avg</div>
+        <div class="card-title">Suites</div>
+        <div class="card-number" id="suitesVal">0</div>
+        <div class="card-avg">3,000 SF avg</div>
         <div class="floor-icon">
-          <!-- Multi-room suite floor plan -->
-          <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Outer walls -->
-            <rect x="3" y="3" width="84" height="84" stroke="#aaa" stroke-width="3" fill="#f9f9f9"/>
-            <!-- Interior walls dividing into rooms -->
-            <line x1="3" y1="38" x2="55" y2="38" stroke="#aaa" stroke-width="2"/>
-            <line x1="55" y1="3" x2="55" y2="87" stroke="#aaa" stroke-width="2"/>
-            <line x1="55" y1="55" x2="87" y2="55" stroke="#aaa" stroke-width="2"/>
-            <!-- Room labels -->
-            <!-- Top-left: Conference -->
-            <text x="29" y="23" font-size="5" fill="#888" text-anchor="middle">CONF</text>
-            <!-- Bottom-left: Open office -->
-            <text x="29" y="65" font-size="5" fill="#888" text-anchor="middle">OPEN</text>
-            <text x="29" y="72" font-size="5" fill="#888" text-anchor="middle">OFFICE</text>
-            <!-- Top-right: Private office -->
-            <text x="71" y="23" font-size="5" fill="#888" text-anchor="middle">OFFICE</text>
-            <!-- Bottom-right: Bathroom/kitchen -->
-            <text x="71" y="67" font-size="4.5" fill="#888" text-anchor="middle">KITCHEN</text>
-            <!-- Desk symbols in conf room -->
-            <rect x="12" y="16" width="22" height="14" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
-            <!-- Desk in private office -->
-            <rect x="62" y="12" width="18" height="12" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
-            <!-- Workstations in open office -->
-            <rect x="10" y="44" width="10" height="8" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
-            <rect x="24" y="44" width="10" height="8" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
-            <rect x="10" y="56" width="10" height="8" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
-            <rect x="24" y="56" width="10" height="8" stroke="#ccc" stroke-width="1" fill="#e8e8e8" rx="1"/>
-            <!-- Door -->
-            <line x1="3" y1="70" x2="3" y2="78" stroke="#fff" stroke-width="3"/>
-            <path d="M 3 70 Q 10 70 10 77" stroke="#aaa" stroke-width="1.5" fill="none"/>
+          <!-- Multi-room suite, blue tint -->
+          <svg width="84" height="72" viewBox="0 0 84 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="76" height="64" rx="1" fill="#E3F2FD"/>
+            <rect x="4" y="4" width="76" height="64" rx="1" stroke="#1E88E5" stroke-width="2"/>
+            <!-- Horizontal wall -->
+            <line x1="4" y1="36" x2="80" y2="36" stroke="#1E88E5" stroke-width="1.5"/>
+            <!-- Vertical wall top -->
+            <line x1="46" y1="4" x2="46" y2="36" stroke="#1E88E5" stroke-width="1.5"/>
+            <!-- Conference table top-left -->
+            <rect x="9" y="11" width="26" height="15" rx="1" fill="#BBDEFB" stroke="#42A5F5" stroke-width="1"/>
+            <!-- Office desk top-right -->
+            <rect x="52" y="10" width="18" height="13" rx="1" fill="#BBDEFB" stroke="#42A5F5" stroke-width="1"/>
+            <!-- Workstations bottom row -->
+            <rect x="9" y="42" width="10" height="8" rx="1" fill="#BBDEFB" stroke="#42A5F5" stroke-width="1"/>
+            <rect x="22" y="42" width="10" height="8" rx="1" fill="#BBDEFB" stroke="#42A5F5" stroke-width="1"/>
+            <rect x="35" y="42" width="10" height="8" rx="1" fill="#BBDEFB" stroke="#42A5F5" stroke-width="1"/>
+            <rect x="48" y="42" width="10" height="8" rx="1" fill="#BBDEFB" stroke="#42A5F5" stroke-width="1"/>
+            <!-- Door arc -->
+            <line x1="4" y1="56" x2="4" y2="64" stroke="#E3F2FD" stroke-width="2.5"/>
+            <path d="M4 56 Q14 56 14 64" stroke="#1E88E5" stroke-width="1.2" fill="none"/>
           </svg>
         </div>
-        <div class="mult" id="suitesMult">x 0</div>
+        <div class="card-mult" id="suitesMult">x 0</div>
       </div>
 
       <!-- FLOORS -->
       <div class="card">
-        <h5>Floors</h5>
-        <div class="big" id="floorsVal">0</div>
-        <div class="avg">9,000 SF avg</div>
+        <div class="card-title">Floors</div>
+        <div class="card-number" id="floorsVal">0</div>
+        <div class="card-avg">9,000 SF avg</div>
         <div class="floor-icon">
-          <!-- Full-floor plan with multiple suites around a core -->
-          <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Outer building outline -->
-            <rect x="2" y="2" width="86" height="86" stroke="#aaa" stroke-width="3" fill="#f9f9f9"/>
-            <!-- Central core (elevator/stairs) -->
-            <rect x="32" y="32" width="26" height="26" stroke="#bbb" stroke-width="2" fill="#e0e0e0"/>
-            <text x="45" y="47" font-size="4" fill="#888" text-anchor="middle">CORE</text>
-            <!-- Suite A - top left -->
-            <rect x="2" y="2" width="28" height="28" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
-            <text x="16" y="17" font-size="4.5" fill="#888" text-anchor="middle">SUITE</text>
-            <text x="16" y="23" font-size="4.5" fill="#888" text-anchor="middle">100</text>
-            <!-- Suite B - top right -->
-            <rect x="60" y="2" width="28" height="28" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
-            <text x="74" y="17" font-size="4.5" fill="#888" text-anchor="middle">SUITE</text>
-            <text x="74" y="23" font-size="4.5" fill="#888" text-anchor="middle">110</text>
-            <!-- Suite C - bottom left -->
-            <rect x="2" y="60" width="28" height="28" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
-            <text x="16" y="75" font-size="4.5" fill="#888" text-anchor="middle">SUITE</text>
-            <text x="16" y="81" font-size="4.5" fill="#888" text-anchor="middle">120</text>
-            <!-- Suite D - bottom right -->
-            <rect x="60" y="60" width="28" height="28" stroke="#bbb" stroke-width="1.5" fill="#efefef"/>
-            <text x="74" y="75" font-size="4.5" fill="#888" text-anchor="middle">SUITE</text>
-            <text x="74" y="81" font-size="4.5" fill="#888" text-anchor="middle">130</text>
+          <!-- Full floor with core, grey tint -->
+          <svg width="84" height="72" viewBox="0 0 84 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="78" height="66" rx="1" fill="#F5F5F5"/>
+            <rect x="3" y="3" width="78" height="66" rx="1" stroke="#9E9E9E" stroke-width="2"/>
+            <!-- Central core -->
+            <rect x="30" y="24" width="24" height="24" rx="1" fill="#E0E0E0" stroke="#BDBDBD" stroke-width="1.5"/>
+            <text x="42" y="39" font-size="5" fill="#9E9E9E" text-anchor="middle" font-family="Helvetica,Arial,sans-serif">CORE</text>
+            <!-- Suite TL -->
+            <rect x="3" y="3" width="25" height="20" rx="1" stroke="#BDBDBD" stroke-width="1" fill="#FAFAFA"/>
+            <!-- Suite TR -->
+            <rect x="56" y="3" width="25" height="20" rx="1" stroke="#BDBDBD" stroke-width="1" fill="#FAFAFA"/>
+            <!-- Suite BL -->
+            <rect x="3" y="49" width="25" height="20" rx="1" stroke="#BDBDBD" stroke-width="1" fill="#FAFAFA"/>
+            <!-- Suite BR -->
+            <rect x="56" y="49" width="25" height="20" rx="1" stroke="#BDBDBD" stroke-width="1" fill="#FAFAFA"/>
             <!-- Corridor lines -->
-            <line x1="30" y1="2"  x2="30" y2="32" stroke="#ccc" stroke-width="1"/>
-            <line x1="60" y1="2"  x2="60" y2="32" stroke="#ccc" stroke-width="1"/>
-            <line x1="30" y1="58" x2="30" y2="88" stroke="#ccc" stroke-width="1"/>
-            <line x1="60" y1="58" x2="60" y2="88" stroke="#ccc" stroke-width="1"/>
-            <line x1="2"  y1="30" x2="32" y2="30" stroke="#ccc" stroke-width="1"/>
-            <line x1="2"  y1="60" x2="32" y2="60" stroke="#ccc" stroke-width="1"/>
-            <line x1="58" y1="30" x2="88" y2="30" stroke="#ccc" stroke-width="1"/>
-            <line x1="58" y1="60" x2="88" y2="60" stroke="#ccc" stroke-width="1"/>
+            <line x1="28" y1="13" x2="30" y2="13" stroke="#DDD" stroke-width="1"/>
+            <line x1="54" y1="13" x2="56" y2="13" stroke="#DDD" stroke-width="1"/>
+            <line x1="28" y1="59" x2="30" y2="59" stroke="#DDD" stroke-width="1"/>
+            <line x1="54" y1="59" x2="56" y2="59" stroke="#DDD" stroke-width="1"/>
           </svg>
         </div>
-        <div class="mult" id="floorsMult">x 0</div>
+        <div class="card-mult" id="floorsMult">x 0</div>
       </div>
 
     </div>
   </div>
 
+  <!-- FOOTER (inside the white card) -->
   <div class="footer">
     <h3>Every building is different.</h3>
     <p>
       A brief assessment against your live data validates<br>
       how this opportunity sits inside your building.
     </p>
-    <a href="#" class="button">Book a Call</a>
+    <a href="#" class="btn-book">Book</a>
   </div>
 
 </div>
@@ -520,157 +523,247 @@ body {
 <script>
 (function () {
 
-  // ── Arc geometry constants ─────────────────────────────────────
-  // SVG viewBox: -10 -10 280 150   (so visible area is -10..270 x -10..140)
-  // Arc: center (120, 120), radius 110
-  // Left endpoint  (pct=0):  (10,  120)   angle = π
-  // Right endpoint (pct=15): (230, 120)   angle = 0
-  // Top (pct=7.5):           (120,  10)   angle = π/2
+  // ── Constants ────────────────────────────────────────────────────
+  var CX = 150, CY = 150, R = 120;
+  var TICKS   = 90;   // total tick lines across 0–15%
+  var MAX_PCT = 15;
 
-  var CX = 120, CY = 120, R = 110;
+  // ── Non-linear angle mapping ─────────────────────────────────────
+  // 0% → π (left)   8% → π/2 (visual center/top)   15% → ~0 (right)
+  // 0–8% occupies the left half of the arc (π → π/2)
+  // 8–15% occupies the right half (π/2 → 0)
+  function percentToAngle(p) {
+    p = Math.min(Math.max(p, 0), MAX_PCT);
+    if (p <= 8) return Math.PI - (p / 8) * (Math.PI / 2);
+    return (Math.PI / 2) * (1 - (p - 8) / 7);
+  }
 
-  function ptOnArc(pct) {
-    // pct 0-15  →  angle π..0  (left to right through top)
-    var angle = Math.PI - (pct / 15) * Math.PI;
+  function angleToPercent(a) {
+    a = Math.min(Math.max(a, 0), Math.PI);
+    if (a >= Math.PI / 2) return ((Math.PI - a) / (Math.PI / 2)) * 8;
+    return 8 + ((Math.PI / 2 - a) / (Math.PI / 2)) * 7;
+  }
+
+  function polar(angle) {
     return {
       x: CX + R * Math.cos(angle),
       y: CY - R * Math.sin(angle)
     };
   }
 
-  // ── Draw tick marks once ───────────────────────────────────────
+  // ── Arc path ─────────────────────────────────────────────────────
+  function describeArc(pct) {
+    if (pct < 0.05) return '';
+    pct = Math.min(pct, 14.99); // avoid degenerate 180° case
+    var s = polar(percentToAngle(0));
+    var e = polar(percentToAngle(pct));
+    // Arc is always < 180°: large-arc-flag=0, sweep-flag=1 (clockwise = upper arc)
+    return 'M ' + s.x.toFixed(2) + ' ' + s.y.toFixed(2) +
+           ' A ' + R + ' ' + R + ' 0 0 1 ' +
+           e.x.toFixed(2) + ' ' + e.y.toFixed(2);
+  }
+
+  // ── Build tick marks ─────────────────────────────────────────────
   var tickGroup = document.getElementById('tickGroup');
+  var tickData  = [];
 
-  for (var i = 0; i <= 20; i++) {
-    var pctI  = (i / 20) * 15;
-    var pt    = ptOnArc(pctI);
-    var angle = Math.PI - (pctI / 15) * Math.PI;
-    var major = (i % 4 === 0);
-    var len   = major ? 11 : 6;
+  for (var i = 0; i <= TICKS; i++) {
+    var tPct   = (i / TICKS) * MAX_PCT;
+    var tAngle = percentToAngle(tPct);
+    // Major tick every 6th = every ~1%
+    var isMajor = (i % 6 === 0);
+    var gap     = 3;              // space between arc edge and tick start
+    var len     = isMajor ? 9 : 5;
 
-    // Ticks go OUTWARD from the arc (away from center)
-    var outerX = CX + (R + len) * Math.cos(angle);
-    var outerY = CY - (R + len) * Math.sin(angle);
+    var ix = CX + (R + gap)       * Math.cos(tAngle);
+    var iy = CY - (R + gap)       * Math.sin(tAngle);
+    var ox = CX + (R + gap + len) * Math.cos(tAngle);
+    var oy = CY - (R + gap + len) * Math.sin(tAngle);
 
     var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    line.setAttribute('x1', pt.x.toFixed(2));
-    line.setAttribute('y1', pt.y.toFixed(2));
-    line.setAttribute('x2', outerX.toFixed(2));
-    line.setAttribute('y2', outerY.toFixed(2));
-    line.setAttribute('stroke', major ? '#b0b0b0' : '#cccccc');
-    line.setAttribute('stroke-width', major ? '2' : '1.2');
+    line.setAttribute('x1', ix.toFixed(2));
+    line.setAttribute('y1', iy.toFixed(2));
+    line.setAttribute('x2', ox.toFixed(2));
+    line.setAttribute('y2', oy.toFixed(2));
+    line.setAttribute('stroke-width', isMajor ? '1.8' : '0.9');
     line.setAttribute('stroke-linecap', 'round');
+    line.setAttribute('stroke', '#EDEDED');
     tickGroup.appendChild(line);
+    tickData.push({ el: line, pct: tPct });
   }
 
-  // ── DOM refs ───────────────────────────────────────────────────
-  var filledArc  = document.getElementById('filledArc');
-  var dialDot    = document.getElementById('dialDot');
-  var dialPct    = document.getElementById('dialPercent');
-  var rsfNum     = document.getElementById('rsfNumber');
-  var annualEl   = document.getElementById('annualImpact');
-  var assetEl    = document.getElementById('assetValue');
-  var equivTitle = document.getElementById('equivTitle');
-  var tenantsVal = document.getElementById('tenantsVal');
-  var suitesVal  = document.getElementById('suitesVal');
-  var floorsVal  = document.getElementById('floorsVal');
-  var tenantsMult= document.getElementById('tenantsMult');
-  var suitesMult = document.getElementById('suitesMult');
-  var floorsMult = document.getElementById('floorsMult');
-
-  // ── Update SVG dial ────────────────────────────────────────────
-  function setDial(pct) {
-    dialPct.textContent = pct.toFixed(1) + '%';
-
-    var end = ptOnArc(pct);
-
-    if (pct < 0.05) {
-      filledArc.removeAttribute('d');
-      dialDot.setAttribute('cx', ptOnArc(0).x.toFixed(2));
-      dialDot.setAttribute('cy', ptOnArc(0).y.toFixed(2));
-      return;
+  function updateTickColors(pct) {
+    for (var j = 0; j < tickData.length; j++) {
+      var t = tickData[j];
+      if (t.pct <= pct) {
+        // Gradient: #999 at 0% → #444 at currentPct
+        var progress = pct > 0 ? t.pct / pct : 0;
+        var v = Math.round(153 - progress * 85); // 153=#99, 68=#44
+        t.el.setAttribute('stroke', 'rgb(' + v + ',' + v + ',' + v + ')');
+      } else {
+        t.el.setAttribute('stroke', '#EDEDED');
+      }
     }
-
-    // large-arc-flag: the arc spans at most 180° (semicircle), so always 0
-    var d = 'M ' + ptOnArc(0).x.toFixed(2) + ' ' + ptOnArc(0).y.toFixed(2) +
-            ' A ' + R + ' ' + R + ' 0 0 1 ' +
-            end.x.toFixed(2) + ' ' + end.y.toFixed(2);
-
-    filledArc.setAttribute('d', d);
-    dialDot.setAttribute('cx', end.x.toFixed(2));
-    dialDot.setAttribute('cy', end.y.toFixed(2));
   }
 
-  // ── Format currency ────────────────────────────────────────────
+  // ── DOM refs ─────────────────────────────────────────────────────
+  var activeArcEl  = document.getElementById('activeArc');
+  var controlTagEl = document.getElementById('controlTag');
+  var dialPctEl    = document.getElementById('dialPercent');
+  var rsfNumEl     = document.getElementById('rsfNumber');
+  var annualEl     = document.getElementById('annualImpact');
+  var assetEl      = document.getElementById('assetValue');
+  var equivTitleEl = document.getElementById('equivTitle');
+  var tenantsValEl = document.getElementById('tenantsVal');
+  var suitesValEl  = document.getElementById('suitesVal');
+  var floorsValEl  = document.getElementById('floorsVal');
+  var tenantsMult  = document.getElementById('tenantsMult');
+  var suitesMult   = document.getElementById('suitesMult');
+  var floorsMult   = document.getElementById('floorsMult');
+
+  // ── State ─────────────────────────────────────────────────────────
+  var currentPct = 0;
+
+  // ── Format ────────────────────────────────────────────────────────
   function fmt(v) {
     if (v >= 1e6) return '$' + (v / 1e6).toFixed(1) + 'M';
     if (v >= 1e3) return '$' + Math.round(v / 1e3) + 'K';
     return '$' + Math.round(v);
   }
 
-  // ── State ──────────────────────────────────────────────────────
-  var currentPct = 0;
-  var targetPct  = 0;
+  // ── Draw dial ──────────────────────────────────────────────────────
+  function drawDial(pct) {
+    pct = Math.min(Math.max(pct, 0), MAX_PCT);
+    dialPctEl.textContent = pct.toFixed(1) + '%';
 
-  // ── Calculate ─────────────────────────────────────────────────
-  function calculate() {
+    // Active arc
+    var d = describeArc(pct);
+    if (d) activeArcEl.setAttribute('d', d);
+    else   activeArcEl.removeAttribute('d');
+
+    // Control tag: centered on arc at current angle, rotated radially
+    var a          = percentToAngle(pct);
+    var tx         = (CX + R * Math.cos(a)).toFixed(2);
+    var ty         = (CY - R * Math.sin(a)).toFixed(2);
+    var rotateDeg  = (-(a * 180 / Math.PI) + 90).toFixed(2);
+    controlTagEl.setAttribute('transform',
+      'translate(' + tx + ',' + ty + ') rotate(' + rotateDeg + ')');
+
+    updateTickColors(pct);
+  }
+
+  // ── Update financial outputs ───────────────────────────────────────
+  function updateNumbers() {
     var rent    = parseFloat(document.getElementById('annualRent').value)   || 0;
     var sqft    = parseFloat(document.getElementById('buildingSqft').value) || 0;
     var capRate = parseFloat(document.getElementById('capRate').value)      || 0;
-    var hold    = parseFloat(document.getElementById('holdPeriod').value)   || 7;
+    var hold    = parseFloat(document.getElementById('holdPeriod').value)   || 1;
 
-    // Recapture % is driven by cap rate (market efficiency) plus a small
-    // building-size factor — larger buildings have more latent inefficiency.
-    var sizeFactor = Math.min(sqft / 50000, 2.0); // 0–2 pts based on sqft
-    targetPct = Math.min(Math.max(capRate * 2.0 + sizeFactor, 0), 15);
+    var rsf     = sqft * (currentPct / 100);
+    var annual  = rsf * rent;
+    var holdTot = annual * hold;
+    var asset   = capRate > 0 ? annual / (capRate / 100) : 0;
 
-    var recaptured   = sqft * (targetPct / 100);
-    var annualRev    = rent * recaptured;
-    var holdRev      = annualRev * hold;
-    var assetImpact  = capRate > 0 ? annualRev / (capRate / 100) : 0;
+    rsfNumEl.textContent  = '+' + Math.round(rsf).toLocaleString() + ' RSF';
+    annualEl.textContent  = fmt(annual) + ' / ' + fmt(holdTot);
+    assetEl.textContent   = fmt(asset);
 
-    annualEl.textContent  = fmt(annualRev) + ' / ' + fmt(holdRev);
-    assetEl.textContent   = fmt(assetImpact);
-    rsfNum.textContent    = '+' + Math.round(recaptured).toLocaleString() + ' RSF';
+    var tenants = Math.max(Math.round(rsf / 1000), 0);
+    var suites  = Math.max(Math.round(rsf / 3000), 0);
+    var floors  = Math.max(Math.round(rsf / 9000), 0);
 
-    var tenants = Math.max(Math.round(recaptured / 1000), 0);
-    var suites  = Math.max(Math.round(recaptured / 3000), 0);
-    var floors  = Math.max(Math.round(recaptured / 9000), 0);
+    tenantsValEl.textContent = tenants;
+    suitesValEl.textContent  = suites;
+    floorsValEl.textContent  = floors;
+    tenantsMult.textContent  = 'x ' + tenants;
+    suitesMult.textContent   = 'x ' + suites;
+    floorsMult.textContent   = 'x ' + floors;
 
-    tenantsVal.textContent  = tenants;
-    suitesVal.textContent   = suites;
-    floorsVal.textContent   = floors;
-    tenantsMult.textContent = 'x ' + tenants;
-    suitesMult.textContent  = 'x ' + suites;
-    floorsMult.textContent  = 'x ' + floors;
-
-    var sfStr = Math.round(recaptured).toLocaleString();
-    equivTitle.textContent = sfStr + ' SF in captured square footage is functionally equivalent to:';
+    equivTitleEl.textContent =
+      Math.round(rsf).toLocaleString() +
+      ' SF in captured square footage is functionally equivalent to:';
   }
 
-  // ── Animation loop ─────────────────────────────────────────────
-  function tick() {
-    var diff = targetPct - currentPct;
-    if (Math.abs(diff) > 0.005) {
-      currentPct += diff * 0.1;
-    } else {
-      currentPct = targetPct;
-    }
-    setDial(currentPct);
-    requestAnimationFrame(tick);
+  // ── Full update ────────────────────────────────────────────────────
+  function update() {
+    drawDial(currentPct);
+    updateNumbers();
   }
 
-  // ── Wire up inputs ─────────────────────────────────────────────
-  // Listen to both 'input' (typing) and 'change' (tab-away / spin buttons)
-  ['annualRent', 'buildingSqft', 'capRate', 'holdPeriod'].forEach(function (id) {
-    var el = document.getElementById(id);
-    el.addEventListener('input', calculate);
-    el.addEventListener('change', calculate);
+  // ── Drag / touch interaction ───────────────────────────────────────
+  var dragging = false;
+
+  function getAngleFromEvent(e) {
+    var svg    = document.getElementById('dialSvg');
+    var rect   = svg.getBoundingClientRect();
+    var vb     = svg.viewBox.baseVal;
+    var scaleX = vb.width  / rect.width;
+    var scaleY = vb.height / rect.height;
+    var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    var clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    var svgX = (clientX - rect.left) * scaleX + vb.x;
+    var svgY = (clientY - rect.top)  * scaleY + vb.y;
+    var dx = svgX - CX;
+    var dy = CY - svgY; // flip: SVG y-axis is inverted
+    var angle = Math.atan2(dy, dx);
+    return Math.min(Math.max(angle, 0), Math.PI);
+  }
+
+  var dialWrap = document.getElementById('dialWrap');
+
+  dialWrap.addEventListener('mousedown', function (e) {
+    dragging = true;
+    e.preventDefault();
+    currentPct = angleToPercent(getAngleFromEvent(e));
+    update();
   });
 
-  // ── Init ───────────────────────────────────────────────────────
-  calculate();
-  requestAnimationFrame(tick);
+  document.addEventListener('mousemove', function (e) {
+    if (!dragging) return;
+    currentPct = angleToPercent(getAngleFromEvent(e));
+    update();
+  });
+
+  document.addEventListener('mouseup', function () { dragging = false; });
+
+  dialWrap.addEventListener('touchstart', function (e) {
+    dragging = true;
+    e.preventDefault();
+    currentPct = angleToPercent(getAngleFromEvent(e));
+    update();
+  }, { passive: false });
+
+  document.addEventListener('touchmove', function (e) {
+    if (!dragging) return;
+    currentPct = angleToPercent(getAngleFromEvent(e));
+    update();
+  }, { passive: false });
+
+  document.addEventListener('touchend', function () { dragging = false; });
+
+  // ── Wire input fields to updateNumbers ────────────────────────────
+  ['annualRent', 'buildingSqft', 'capRate', 'holdPeriod'].forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener('input',  updateNumbers);
+    el.addEventListener('change', updateNumbers);
+  });
+
+  // ── Initial load: render at 0%, then animate to 8% ────────────────
+  update();
+
+  var animTarget = 8.0;
+  function animTick() {
+    var diff = animTarget - currentPct;
+    if (Math.abs(diff) > 0.02) {
+      currentPct += diff * 0.09;
+      update();
+      requestAnimationFrame(animTick);
+    } else {
+      currentPct = animTarget;
+      update();
+    }
+  }
+  requestAnimationFrame(animTick);
 
 })();
 </script>
