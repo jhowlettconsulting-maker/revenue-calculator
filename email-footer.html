@@ -1,0 +1,125 @@
+<!-- FOOTER : DESKTOP + MOBILE SAFE STACK VERSION -->
+
+<style>
+/* MOBILE SHOW / DESKTOP HIDE */
+@media only screen and (max-width:600px) {
+  .desktop-only { display:none !important; max-height:0 !important; overflow:hidden !important; }
+  .mobile-only  { display:block !important; max-height:none !important; overflow:visible !important; }
+}
+@media only screen and (min-width:601px) {
+  .desktop-only { display:block !important; }
+  .mobile-only  { display:none !important; max-height:0 !important; overflow:hidden !important; }
+}
+</style>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+  <tr>
+    <td align="center">
+
+      <!-- ============================================================ -->
+      <!-- DESKTOP LAYOUT — shown in Outlook via MSO conditional + all  -->
+      <!-- other clients via the .desktop-only media-query class        -->
+      <!-- ============================================================ -->
+      <!--[if (gte mso 9)|(IE)]>
+      <table role="presentation" width="520" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+        <tr>
+          <td width="260" valign="top" align="left" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#7A7F85;padding-right:16px;">
+            <div>Stevenson Systems, Inc.</div>
+            <div>27822 El Lazo Road</div>
+            <div>Laguna Niguel, CA 92677</div>
+            <div style="margin-top:14px;">
+              <a href="https://www.exploretruspace.com/privacy-policy" style="color:#7A7F85;text-decoration:underline;">Learn more in our privacy policy.</a>
+            </div>
+          </td>
+          <td width="260" valign="top" align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#7A7F85;padding-left:16px;">
+            <div>You can <a href="{{ unsubscribe_link }}" style="color:#7A7F85;text-decoration:underline;">manage your preferences or unsubscribe</a> at any time.</div>
+            <div style="margin-top:14px;"><a href="{{ view_as_page_url }}" style="color:#7A7F85;text-decoration:underline;">View in the browser</a></div>
+            <div style="font-size:12px;color:#9A9FA4;margin-top:14px;">Property of Stevenson Systems &copy; 2026</div>
+          </td>
+        </tr>
+      </table>
+      <![endif]-->
+
+      <!-- Non-Outlook clients: desktop two-column (hidden on mobile via media query) -->
+      <!--[if !mso]><!-->
+      <table role="presentation" width="520" cellpadding="0" cellspacing="0"
+             class="desktop-only"
+             style="border-collapse:collapse;">
+        <tr>
+          <td width="260" valign="top" align="left"
+              style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#7A7F85;padding-right:16px;">
+            <div>Stevenson Systems, Inc.</div>
+            <div>27822 El Lazo Road</div>
+            <div>Laguna Niguel, CA 92677</div>
+            <div style="margin-top:14px;">
+              <a href="https://www.exploretruspace.com/privacy-policy"
+                 style="color:#7A7F85;text-decoration:underline;">
+                Learn more in our privacy policy.
+              </a>
+            </div>
+          </td>
+          <td width="260" valign="top" align="right"
+              style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#7A7F85;padding-left:16px;">
+            <div>
+              You can
+              <a href="{{ unsubscribe_link }}" style="color:#7A7F85;text-decoration:underline;">
+                manage your preferences or unsubscribe
+              </a>
+              at any time.
+            </div>
+            <div style="margin-top:14px;">
+              <a href="{{ view_as_page_url }}" style="color:#7A7F85;text-decoration:underline;">
+                View in the browser
+              </a>
+            </div>
+            <div style="font-size:12px;color:#9A9FA4;margin-top:14px;">
+              Property of Stevenson Systems &copy; 2026
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <!-- ============================================================ -->
+      <!-- MOBILE STACKED LAYOUT                                        -->
+      <!-- Key fix: use max-height:0/overflow:hidden instead of        -->
+      <!-- display:none as the default hidden state so the media-query  -->
+      <!-- !important override is more reliable across email clients.   -->
+      <!-- ============================================================ -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+             class="mobile-only"
+             style="border-collapse:collapse;max-height:0;overflow:hidden;display:none;">
+        <tr>
+          <td valign="top" align="left"
+              style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#7A7F85;">
+            <div>Stevenson Systems, Inc.</div>
+            <div>27822 El Lazo Road</div>
+            <div>Laguna Niguel, CA 92677</div>
+            <div style="margin-top:14px;">
+              <a href="https://www.exploretruspace.com/privacy-policy"
+                 style="color:#7A7F85;text-decoration:underline;">
+                Learn more in our privacy policy.
+              </a>
+            </div>
+            <div style="margin-top:14px;">
+              You can
+              <a href="{{ unsubscribe_link }}" style="color:#7A7F85;text-decoration:underline;">
+                manage your preferences or unsubscribe
+              </a>
+              at any time.
+            </div>
+            <div style="margin-top:14px;">
+              <a href="{{ view_as_page_url }}" style="color:#7A7F85;text-decoration:underline;">
+                View in the browser
+              </a>
+            </div>
+            <div style="font-size:12px;color:#9A9FA4;margin-top:14px;">
+              Property of Stevenson Systems &copy; 2026
+            </div>
+          </td>
+        </tr>
+      </table>
+      <!--<![endif]-->
+
+    </td>
+  </tr>
+</table>
